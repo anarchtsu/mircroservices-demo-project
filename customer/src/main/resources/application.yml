@@ -1,6 +1,20 @@
 server:
-  port: 8080 # todo изменить порт
+  port: 8081
 
 spring:
   application:
     name: customer
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer
+    password: postgres
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  flyway:
+    enabled: true

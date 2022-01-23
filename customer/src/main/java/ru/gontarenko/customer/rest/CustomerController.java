@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.gontarenko.customer.rest.dto.CustomerDto;
+import ru.gontarenko.customer.rest.mapper.CustomerWebMapper;
 import ru.gontarenko.customer.service.CustomerService;
-import ru.gontarenko.customer.service.dto.CustomerRegisterRequest;
+import ru.gontarenko.customer.rest.dto.SaveCustomerCommand;
+
+/**
+ * http://localhost:8081/swagger-ui.html
+ */
 
 @Slf4j
 @RestController
@@ -19,13 +25,12 @@ import ru.gontarenko.customer.service.dto.CustomerRegisterRequest;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomerController {
     CustomerService service;
+    CustomerWebMapper customerWebMapper;
 
-    @PostMapping("/registration")
-    public void register(@RequestBody CustomerRegisterRequest request) {
-        log.info("New customer registration request {}", request);
-        val customer = service.register(request);
-        log.info("New customer was saved {}", customer);
-        // todo return new customer dto
+    @PostMapping
+    public CustomerDto create(@RequestBody SaveCustomerCommand command) {
+        log.info("New customer registration request {}", command);
+        val customer = service.create(command);
+        return customerWebMapper.dto(customer);
     }
-    // http://localhost:8080/swagger-ui.html
 }
