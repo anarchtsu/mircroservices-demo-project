@@ -25,12 +25,12 @@ import ru.gontarenko.customer.rest.dto.SaveCustomerCommand;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomerController {
     CustomerService service;
-    CustomerWebMapper customerWebMapper;
+    CustomerWebMapper mapper;
 
     @PostMapping
     public CustomerDto create(@RequestBody SaveCustomerCommand command) {
         log.info("New customer registration request {}", command);
         val customer = service.create(command);
-        return customerWebMapper.dto(customer);
+        return mapper.dto(customer);
     }
 }

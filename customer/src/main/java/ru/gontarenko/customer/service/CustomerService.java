@@ -20,9 +20,9 @@ public class CustomerService {
     SaveCustomerMapper mapper;
     CustomerRepository repository;
 
-    public Customer create(SaveCustomerCommand request) {
+    public Customer create(SaveCustomerCommand command) {
         val customer = new Customer();
-        mapper.update(customer, request);
+        mapper.update(customer, command);
         return repository.save(customer);
     }
 }

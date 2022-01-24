@@ -7,5 +7,5 @@ import ru.gontarenko.customer.rest.dto.SaveCustomerCommand;
 
 @Mapper
 public interface SaveCustomerMapper {
-    void update(@MappingTarget Customer customer, SaveCustomerCommand request);
+    void update(@MappingTarget Customer customer, SaveCustomerCommand command);
 }
