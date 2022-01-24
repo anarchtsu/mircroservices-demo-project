@@ -1,5 +1,5 @@
 services:
-  postgres:
+  postgres: # best way -> 1 microservice = 1 postgres instance
     container_name: postgres
     image: postgres
     environment:
