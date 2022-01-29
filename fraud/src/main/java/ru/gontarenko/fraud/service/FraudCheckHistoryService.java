@@ -20,10 +20,10 @@ public class FraudCheckHistoryService {
     Random random = new Random();
     FraudCheckHistoryRepository repository;
 
-    public FraudCheckHistory checkCustomerHistory(Integer customerId) {
-        log.info("Check history request for customer {}", customerId);
-        return repository.findByCustomerId(customerId).orElseGet(
-                () -> repository.save(new FraudCheckHistory(random.nextBoolean(), customerId))
+    public FraudCheckHistory checkEmailHistory(String email) {
+        log.info("Check history request for email: {}", email);
+        return repository.findByEmail(email).orElseGet(
+                () -> repository.save(new FraudCheckHistory(random.nextBoolean(), email))
         );
     }
 }

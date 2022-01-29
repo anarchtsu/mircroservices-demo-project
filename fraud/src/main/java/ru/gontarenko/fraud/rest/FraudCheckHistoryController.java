@@ -3,8 +3,6 @@ package ru.gontarenko.fraud.rest;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gontarenko.clients.fraud.FraudClient;
@@ -20,8 +18,7 @@ public class FraudCheckHistoryController implements FraudClient {
     FraudCheckHistoryService service;
     FraudCheckHistoryWebMapper mapper;
 
-    @GetMapping("{customerId}")
-    public FraudCheckHistoryDto checkCustomerHistory(@PathVariable Integer customerId) {
-        return mapper.dto(service.checkCustomerHistory(customerId));
+    public FraudCheckHistoryDto checkEmailHistory(String email) {
+        return mapper.dto(service.checkEmailHistory(email));
     }
 }

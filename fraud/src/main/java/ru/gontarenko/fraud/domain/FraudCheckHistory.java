@@ -27,16 +27,15 @@ public class FraudCheckHistory {
     Integer id;
 
     @NotNull
-    Integer customerId;
-
+    String email;
     @NotNull
     boolean fraudster;
     @NotNull
     LocalDateTime createdAt;
 
-    public FraudCheckHistory(boolean fraudster, Integer customerId) {
+    public FraudCheckHistory(boolean fraudster, String email) {
         setFraudster(fraudster);
-        setCustomerId(customerId);
+        setEmail(email);
         setCreatedAt(LocalDateTime.now());
     }
 }
