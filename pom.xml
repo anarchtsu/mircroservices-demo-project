@@ -14,6 +14,7 @@
         <module>fraud</module>
         <module>eureka-server</module>
         <module>feign-clients</module>
+        <module>notification-service</module>
     </modules>
 
     <name>ms-app</name>
