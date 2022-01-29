@@ -1,6 +1,5 @@
 package ru.gontarenko.customer.rest;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.hibernate.exception.ConstraintViolationException;
@@ -11,9 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.validation.ConstraintViolation;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -26,7 +28,6 @@ public class WebExceptionHandler {
         );
     }};
 
-    @SneakyThrows
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<?> handleConstraintViolationException(ConstraintViolationException exception) {
         val message = CONSTRAINT_TO_MESSAGES_MAP.getOrDefault(
@@ -35,6 +36,17 @@ public class WebExceptionHandler {
                         .map(ServerErrorMessage::getMessage)
                         .orElse("Empty error message")
         );
+        val exceptionName = exception.getClass().getSimpleName();
+        log.info("Handled bad request, exception: {}, message: {}", exceptionName, message);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+    }
+
+    @ExceptionHandler(javax.validation.ConstraintViolationException.class)
+    public ResponseEntity<?> handleConstraintViolationException(javax.validation.ConstraintViolationException exception) {
+        val violationMessages = Optional.ofNullable(exception.getConstraintViolations())
+                .map(x -> x.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList()))
+                .orElse(List.of());
+        val message = violationMessages.isEmpty() ? exception.getMessage() : String.join(". ", violationMessages);
         val exceptionName = exception.getClass().getSimpleName();
         log.info("Handled bad request, exception: {}, message: {}", exceptionName, message);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);

@@ -45,7 +45,7 @@ public class CustomerController {
                 customer.getId()
         );
         if (fraudCheckHistoryDto.isFraudster()) {
-            throw new ConstraintViolationException("customer is fraudster", null);
+            throw new ConstraintViolationException("Customer is fraudster.", null);
         }
 
         return mapper.dto(customer);

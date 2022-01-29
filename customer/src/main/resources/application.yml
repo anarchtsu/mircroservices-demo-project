@@ -20,7 +20,8 @@ spring:
     enabled: true
 
 communication-urls:
-  fraud-service: 'http://localhost:8082/api/v1'
+#  fraud-service: 'http://localhost:8082/api/v1' # without eureka
+  fraud-service: 'http://FRAUD/api/v1'
 
 eureka:
   client:
