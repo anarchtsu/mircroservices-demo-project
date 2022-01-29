@@ -13,6 +13,7 @@
         <module>customer</module>
         <module>fraud</module>
         <module>eureka-server</module>
+        <module>feign-clients</module>
     </modules>
 
     <name>ms-app</name>
@@ -69,6 +70,10 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${org.springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 
