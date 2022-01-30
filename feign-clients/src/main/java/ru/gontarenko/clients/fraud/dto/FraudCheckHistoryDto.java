@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FraudCheckHistoryDto {
     Integer id;
-    Integer customerId;
+    String email;
     boolean fraudster;
     LocalDateTime createdAt;
 }

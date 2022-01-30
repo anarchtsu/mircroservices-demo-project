@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(indexes = @Index(name = "fraud_check_history_customer_id_idx", columnList = "customerId", unique = true))
+@Table(indexes = @Index(name = "fraud_check_history_email_idx", columnList = "email", unique = true))
 @Setter
 @Getter
 @NoArgsConstructor
@@ -25,7 +25,6 @@ public class FraudCheckHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
-
     @NotNull
     String email;
     @NotNull

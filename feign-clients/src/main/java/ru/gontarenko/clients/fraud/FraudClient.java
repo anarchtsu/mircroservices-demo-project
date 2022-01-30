@@ -12,7 +12,7 @@ import ru.gontarenko.clients.fraud.dto.FraudCheckHistoryDto;
 public interface FraudClient {
     String PATH = "api/v1/fraud-check-history";
 
-    @GetMapping
+    @GetMapping(params = "email")
     FraudCheckHistoryDto checkEmailHistory(@RequestParam("email") String email);
 
 }

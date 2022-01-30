@@ -17,7 +17,6 @@ import ru.gontarenko.customer.service.CustomerService;
  * http://localhost:8081/swagger-ui.html
  */
 
-@Slf4j
 @RestController
 @RequestMapping("api/v1/customers")
 @RequiredArgsConstructor
@@ -28,7 +27,6 @@ public class CustomerController {
 
     @PostMapping
     public CustomerDto create(@RequestBody SaveCustomerCommand command) {
-        log.info("New customer registration request {}", command);
         return mapper.dto(service.create(command));
     }
 }
