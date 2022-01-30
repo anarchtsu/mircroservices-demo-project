@@ -31,7 +31,7 @@ public class CustomerService {
     NotificationClient notificationClient;
 
     public Customer create(SaveCustomerCommand command) {
-        log.info("New customer registration request {}", command);
+        log.info("New customer registration request: {}", command);
         val fraudCheckHistoryDto = fraudClient.checkEmailHistory(command.email());
         if (fraudCheckHistoryDto.isFraudster()) {
             notificationClient.send(FRAUDULENT_MESSAGE, command.email());

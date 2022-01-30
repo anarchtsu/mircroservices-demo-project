@@ -19,7 +19,7 @@ public class NotificationService {
     NotificationRepository repository;
 
     public Notification create(String message, String sendTo) {
-        log.info("New message: {}, for: {}", message, sendTo);
+        log.info("Notification was sent to {} with message: {}", sendTo, message);
         return repository.save(new Notification(message, sendTo));
     }
 }
