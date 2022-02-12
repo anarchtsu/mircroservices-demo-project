@@ -12,7 +12,7 @@ import ru.gontarenko.clients.notification.NotificationClient;
 import ru.gontarenko.customer.domain.Customer;
 import ru.gontarenko.customer.repository.CustomerRepository;
 import ru.gontarenko.customer.rest.dto.SaveCustomerCommand;
-import ru.gontarenko.customer.service.mapper.SaveCustomerMapper;
+import ru.gontarenko.customer.rest.mapper.CustomerMapper;
 
 import javax.validation.ConstraintViolationException;
 
@@ -25,7 +25,7 @@ import javax.validation.ConstraintViolationException;
 public class CustomerService {
     private static final String FRAUDULENT_MESSAGE = "Sorry, we cannot register you, your email is fraudulent.";
     private static final String WELCOME_MESSAGE = "Welcome, %s!";
-    SaveCustomerMapper mapper;
+    CustomerMapper mapper;
     CustomerRepository repository;
     FraudClient fraudClient;
     NotificationClient notificationClient;

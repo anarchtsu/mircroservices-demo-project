@@ -15,6 +15,7 @@
         <module>eureka-server</module>
         <module>feign-clients</module>
         <module>notification-service</module>
+        <module>web-gateway</module>
     </modules>
 
     <name>ms-app</name>
@@ -31,6 +32,7 @@
         <lombok.version>1.18.22</lombok.version>
         <org.springdoc.version>1.6.4</org.springdoc.version>
         <spring.cloud-version>2020.0.5</spring.cloud-version>
+        <flyway.version>8.4.2</flyway.version>
     </properties>
 
     <dependencyManagement>
@@ -66,11 +68,6 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>${org.springdoc.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
