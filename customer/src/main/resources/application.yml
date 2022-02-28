@@ -18,9 +18,11 @@ spring:
     show-sql: true
   flyway:
     enabled: true
+  rabbitmq:
+    addresses: localhost:5672
 
 communication-urls:
-#  fraud-service: 'http://localhost:8082/api/v1' # without eureka
+  #  fraud-service: 'http://localhost:8082/api/v1' # without eureka
   fraud-service: 'http://FRAUD/api/v1'
 
 eureka:

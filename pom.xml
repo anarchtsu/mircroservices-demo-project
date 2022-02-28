@@ -16,6 +16,7 @@
         <module>feign-clients</module>
         <module>notification-service</module>
         <module>web-gateway</module>
+        <module>amqp</module>
     </modules>
 
     <name>ms-app</name>

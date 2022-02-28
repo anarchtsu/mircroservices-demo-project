@@ -20,6 +20,7 @@ public class NotificationController implements NotificationClient {
 
     @Override
     public NotificationDto send(String message, String sendTo) {
+        // todo remove controller and client ?
         return mapper.dto(service.create(message, sendTo));
     }
 }
