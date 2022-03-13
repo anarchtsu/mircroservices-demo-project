@@ -34,16 +34,95 @@ services:
     container_name: zipkin
     ports:
       - 9411:9411 # localhost:9411
+    networks:
+      - spring
 
   rabbit:
     image: rabbitmq:3.9.11-management-alpine
     container_name: rabbit
+    networks:
+      - spring
     ports:
-    - "5672:5672"
-    - "15672:15672"
+      - "5672:5672"
+      - "15672:15672"
+
+  eureka-server:
+    image: anarchtsu/eureka-server:latest
+    container_name: eureka-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8761:8761"
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+
+  web-gateway:
+    image: anarchtsu/web-gateway:latest
+    container_name: web-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - eureka-server
+
+  customer:
+    image: anarchtsu/customer:latest
+    container_name: customer
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8081:8081"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
+      - rabbit
+
+  fraud:
+    image: anarchtsu/fraud:latest
+    container_name: fraud
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8082:8082"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
+      - rabbit
+
+  notification-service:
+    image: anarchtsu/notification-service:latest
+    container_name: notification-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8083:8083"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - postgres
+      - zipkin
+      - eureka-server
+      - rabbit
 
 networks:
   postgres:
+    driver: bridge
+  spring:
     driver: bridge
 
 volumes:

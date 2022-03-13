@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
+ * http://localhost:5050/browser/ - pgAdmin
+ *
+ * docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}"
  *
  * http://localhost:8761 - eureka dashboard
  *
